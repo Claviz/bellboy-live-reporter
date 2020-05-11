@@ -7,13 +7,13 @@
 Send [bellboy](https://github.com/Claviz/bellboy) events as requests to the specified server endpoint.
 
 * Requests never fail because of timeout. 
-* If server can't be reached, request retries to send an event until success.
+* If the server can't be reached, request retries to send an event until success.
 
-These features and the fact that [bellboy job always waits code inside event listener to complete](https://github.com/Claviz/bellboy#events-and-event-listeners-) allow job to be executed gradually:
-1. Reporter sends information about event to the server.
-2. Server accepts it, but doesn't response to a request - job is paused.
-3. After some time or because of user interaction server decides to send a response.
-4. Reporter receives response, continues job till the next event and repeats all the steps again. 
+These features and the fact that [bellboy jobs always wait for the code inside an event listener to complete](https://github.com/Claviz/bellboy#events-and-event-listeners-) allow a job to be executed gradually:
+1. Reporter sends information about an event to the server.
+2. The server accepts it, but doesn't respond to a request - the job is paused.
+3. After some time or because of user interaction the server decides to send a response.
+4. Reporter receives the response, continues the job till the next event and repeats all the steps again. 
 
 
 ## Installation
