@@ -3,16 +3,35 @@ import express from 'express';
 import { Server } from 'http';
 
 import LiveReporter from '../src';
+import { ReportData } from '../src/types';
 
-let data: any[] = [];
+let data: ReportData[] = [];
 
 function startServer(opts?: { simulateFailOnce?: boolean; port?: number; }): Server {
+    function mockChangingData(reportData: ReportData) {
+        const changed = {
+            ...reportData,
+            events: reportData.events.map(x => ({ ...x, jobId, timestamp, eventId: `event${timestamp}` })),
+        };
+        timestamp += 1;
+
+        return changed;
+    }
+    const jobId = 'job1';
+    let timestamp = 0;
     let firstTime = true;
     const app = express();
     app.use(express.json());
     app.post('/', function (req: any, res: any) {
-        data.push(req.body);
+        const body = req.body as ReportData;
+        data.push(mockChangingData(body));
         res.send(firstTime && opts?.simulateFailOnce ? 404 : undefined);
+        firstTime = false;
+    });
+    app.post('/with-condition', function (req: any, res: any) {
+        const body = req.body as ReportData;
+        data.push(mockChangingData(body));
+        res.send(firstTime && opts?.simulateFailOnce ? 404 : 'something_3');
         firstTime = false;
     });
     const server = app.listen(opts?.port ? opts.port : 3041);
@@ -41,7 +60,6 @@ class CustomDestination extends Destination {
 
 it('successfully sends event requests to the server', async () => {
     const server = startServer();
-    const events: IBellboyEvent[] = [];
     const processor = new DynamicProcessor({
         generator: async function* () {
             for (let i = 0; i < 3; i++) {
@@ -53,16 +71,14 @@ it('successfully sends event requests to the server', async () => {
     });
     const destination = new CustomDestination();
     const job = new Job(processor, [destination], { reporters: [new LiveReporter()] });
-    job.onAny(undefined, async (event) => events.push(event));
     await job.run();
-    expect(JSON.stringify(events)).toEqual(JSON.stringify(data));
+    expect(data).toMatchSnapshot();
     server.close();
 });
 
 it('successfully sends event requests to the custom server endpoint', async () => {
     const port = 3042;
     const server = startServer({ port: port });
-    const events: IBellboyEvent[] = [];
     const processor = new DynamicProcessor({
         generator: async function* () {
             for (let i = 0; i < 3; i++) {
@@ -74,15 +90,13 @@ it('successfully sends event requests to the custom server endpoint', async () =
     });
     const destination = new CustomDestination();
     const job = new Job(processor, [destination], { reporters: [new LiveReporter({ url: `http://localhost:${port}` })] });
-    job.onAny(undefined, async (event) => events.push(event));
     await job.run();
-    expect(JSON.stringify(events)).toEqual(JSON.stringify(data));
+    expect(data).toMatchSnapshot();
     server.close();
 });
 
 it('retries to send an event to the server on fail', async () => {
     const server = startServer({ simulateFailOnce: true });
-    const events: IBellboyEvent[] = [];
     const processor = new DynamicProcessor({
         generator: async function* () {
             for (let i = 0; i < 3; i++) {
@@ -94,8 +108,25 @@ it('retries to send an event to the server on fail', async () => {
     });
     const destination = new CustomDestination();
     const job = new Job(processor, [destination], { reporters: [new LiveReporter()] });
-    job.onAny(undefined, async (event) => events.push(event));
     await job.run();
-    expect(JSON.stringify([events[0], ...events])).toEqual(JSON.stringify(data));
+    expect(data).toMatchSnapshot();
+    server.close();
+});
+
+it('if condition is set, waits for it before sending events', async () => {
+    const server = startServer();
+    const processor = new DynamicProcessor({
+        generator: async function* () {
+            for (let i = 0; i < 5; i++) {
+                yield {
+                    text: `something_${i}`
+                }
+            }
+        },
+    });
+    const destination = new CustomDestination();
+    const job = new Job(processor, [destination], { reporters: [new LiveReporter({ url: `http://localhost:3041/with-condition` })] });
+    await job.run();
+    expect(data).toMatchSnapshot();
     server.close();
 });

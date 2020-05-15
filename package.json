@@ -1,6 +1,6 @@
 {
   "name": "bellboy-live-reporter",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Send bellboy events as requests to the specified server endpoint.",
   "main": "lib/index",
   "types": "lib/index",

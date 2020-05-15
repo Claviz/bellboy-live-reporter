@@ -1,20 +1,24 @@
 import axios from 'axios';
 import { IBellboyEvent, Job, Reporter } from 'bellboy';
 
-import { IReporterConfig } from './types';
+import { IReporterConfig, ReportData } from './types';
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+let savedEvents: IBellboyEvent[] = [];
+let condition: string;
 
-async function poll(url: string, event: IBellboyEvent) {
+async function poll(url: string, reportData: ReportData) {
     try {
-        await axios.post(url, event);
+        const response = await axios.post(url, reportData);
+        savedEvents = [];
+        condition = response.data?.toLowerCase();
         return;
     } catch (err) {
         const timeToWait = 3000;
         console.log(`Can't reach ${url}`);
         console.log(`Waiting ${timeToWait / 1000}s before reconnect...`);
         await delay(timeToWait);
-        await poll(url, event);
+        await poll(url, reportData);
     }
 }
 class LogReporter extends Reporter {
@@ -29,7 +33,11 @@ class LogReporter extends Reporter {
     report(job: Job) {
         this.#url = this.#url ? this.#url : `http://localhost:3041`;
         job.onAny(undefined, async (event) => {
-            await poll(this.#url, event);
+            savedEvents.push(event);
+            const reportFinished = event.eventName === 'endProcessing';
+            if (reportFinished || !condition || (condition && JSON.stringify(event).toLowerCase().includes(condition))) {
+                await poll(this.#url, { events: savedEvents, reportFinished });
+            }
         });
     }
 }

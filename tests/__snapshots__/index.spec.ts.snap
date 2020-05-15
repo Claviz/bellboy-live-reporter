@@ -1,0 +1,932 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`if condition is set, waits for it before sending events 1`] = `
+Array [
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [
+          Object {
+            "rowLimit": 0,
+          },
+          Array [
+            Object {
+              "batchSize": 0,
+              "disableLoad": false,
+            },
+          ],
+        ],
+        "eventId": "event0",
+        "eventName": "startProcessing",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 0,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [],
+        "eventId": "event1",
+        "eventName": "startProcessingStream",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 1,
+      },
+      Object {
+        "eventArguments": Array [
+          Object {
+            "text": "something_0",
+          },
+        ],
+        "eventId": "event1",
+        "eventName": "startProcessingRow",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 1,
+      },
+      Object {
+        "eventArguments": Array [],
+        "eventId": "event1",
+        "eventName": "endProcessingRow",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 1,
+      },
+      Object {
+        "eventArguments": Array [
+          Object {
+            "text": "something_1",
+          },
+        ],
+        "eventId": "event1",
+        "eventName": "startProcessingRow",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 1,
+      },
+      Object {
+        "eventArguments": Array [],
+        "eventId": "event1",
+        "eventName": "endProcessingRow",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 1,
+      },
+      Object {
+        "eventArguments": Array [
+          Object {
+            "text": "something_2",
+          },
+        ],
+        "eventId": "event1",
+        "eventName": "startProcessingRow",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 1,
+      },
+      Object {
+        "eventArguments": Array [],
+        "eventId": "event1",
+        "eventName": "endProcessingRow",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 1,
+      },
+      Object {
+        "eventArguments": Array [
+          Object {
+            "text": "something_3",
+          },
+        ],
+        "eventId": "event1",
+        "eventName": "startProcessingRow",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 1,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [],
+        "eventId": "event2",
+        "eventName": "endProcessingRow",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 2,
+      },
+      Object {
+        "eventArguments": Array [
+          Object {
+            "text": "something_4",
+          },
+        ],
+        "eventId": "event2",
+        "eventName": "startProcessingRow",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 2,
+      },
+      Object {
+        "eventArguments": Array [],
+        "eventId": "event2",
+        "eventName": "endProcessingRow",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 2,
+      },
+      Object {
+        "eventArguments": Array [
+          0,
+          Array [
+            Object {
+              "text": "something_0",
+            },
+            Object {
+              "text": "something_1",
+            },
+            Object {
+              "text": "something_2",
+            },
+            Object {
+              "text": "something_3",
+            },
+            Object {
+              "text": "something_4",
+            },
+          ],
+        ],
+        "eventId": "event2",
+        "eventName": "loadingBatch",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 2,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [
+          0,
+          Array [
+            Object {
+              "text": "something_0",
+            },
+            Object {
+              "text": "something_1",
+            },
+            Object {
+              "text": "something_2",
+            },
+            Object {
+              "text": "something_3",
+            },
+            Object {
+              "text": "something_4",
+            },
+          ],
+        ],
+        "eventId": "event3",
+        "eventName": "loadedBatch",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 3,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [
+          0,
+        ],
+        "eventId": "event4",
+        "eventName": "endLoadingBatch",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 4,
+      },
+      Object {
+        "eventArguments": Array [],
+        "eventId": "event4",
+        "eventName": "endProcessingStream",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 4,
+      },
+      Object {
+        "eventArguments": Array [],
+        "eventId": "event4",
+        "eventName": "endProcessing",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 4,
+      },
+    ],
+    "reportFinished": true,
+  },
+]
+`;
+
+exports[`retries to send an event to the server on fail 1`] = `
+Array [
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [
+          Object {
+            "rowLimit": 0,
+          },
+          Array [
+            Object {
+              "batchSize": 0,
+              "disableLoad": false,
+            },
+          ],
+        ],
+        "eventId": "event0",
+        "eventName": "startProcessing",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 0,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [
+          Object {
+            "rowLimit": 0,
+          },
+          Array [
+            Object {
+              "batchSize": 0,
+              "disableLoad": false,
+            },
+          ],
+        ],
+        "eventId": "event1",
+        "eventName": "startProcessing",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 1,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [],
+        "eventId": "event2",
+        "eventName": "startProcessingStream",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 2,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [
+          Object {
+            "text": "something",
+          },
+        ],
+        "eventId": "event3",
+        "eventName": "startProcessingRow",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 3,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [],
+        "eventId": "event4",
+        "eventName": "endProcessingRow",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 4,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [
+          Object {
+            "text": "something",
+          },
+        ],
+        "eventId": "event5",
+        "eventName": "startProcessingRow",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 5,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [],
+        "eventId": "event6",
+        "eventName": "endProcessingRow",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 6,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [
+          Object {
+            "text": "something",
+          },
+        ],
+        "eventId": "event7",
+        "eventName": "startProcessingRow",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 7,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [],
+        "eventId": "event8",
+        "eventName": "endProcessingRow",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 8,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [
+          0,
+          Array [
+            Object {
+              "text": "something",
+            },
+            Object {
+              "text": "something",
+            },
+            Object {
+              "text": "something",
+            },
+          ],
+        ],
+        "eventId": "event9",
+        "eventName": "loadingBatch",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 9,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [
+          0,
+          Array [
+            Object {
+              "text": "something",
+            },
+            Object {
+              "text": "something",
+            },
+            Object {
+              "text": "something",
+            },
+          ],
+        ],
+        "eventId": "event10",
+        "eventName": "loadedBatch",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 10,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [
+          0,
+        ],
+        "eventId": "event11",
+        "eventName": "endLoadingBatch",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 11,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [],
+        "eventId": "event12",
+        "eventName": "endProcessingStream",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 12,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [],
+        "eventId": "event13",
+        "eventName": "endProcessing",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 13,
+      },
+    ],
+    "reportFinished": true,
+  },
+]
+`;
+
+exports[`successfully sends event requests to the custom server endpoint 1`] = `
+Array [
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [
+          Object {
+            "rowLimit": 0,
+          },
+          Array [
+            Object {
+              "batchSize": 0,
+              "disableLoad": false,
+            },
+          ],
+        ],
+        "eventId": "event0",
+        "eventName": "startProcessing",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 0,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [],
+        "eventId": "event1",
+        "eventName": "startProcessingStream",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 1,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [
+          Object {
+            "text": "something",
+          },
+        ],
+        "eventId": "event2",
+        "eventName": "startProcessingRow",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 2,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [],
+        "eventId": "event3",
+        "eventName": "endProcessingRow",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 3,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [
+          Object {
+            "text": "something",
+          },
+        ],
+        "eventId": "event4",
+        "eventName": "startProcessingRow",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 4,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [],
+        "eventId": "event5",
+        "eventName": "endProcessingRow",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 5,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [
+          Object {
+            "text": "something",
+          },
+        ],
+        "eventId": "event6",
+        "eventName": "startProcessingRow",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 6,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [],
+        "eventId": "event7",
+        "eventName": "endProcessingRow",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 7,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [
+          0,
+          Array [
+            Object {
+              "text": "something",
+            },
+            Object {
+              "text": "something",
+            },
+            Object {
+              "text": "something",
+            },
+          ],
+        ],
+        "eventId": "event8",
+        "eventName": "loadingBatch",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 8,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [
+          0,
+          Array [
+            Object {
+              "text": "something",
+            },
+            Object {
+              "text": "something",
+            },
+            Object {
+              "text": "something",
+            },
+          ],
+        ],
+        "eventId": "event9",
+        "eventName": "loadedBatch",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 9,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [
+          0,
+        ],
+        "eventId": "event10",
+        "eventName": "endLoadingBatch",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 10,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [],
+        "eventId": "event11",
+        "eventName": "endProcessingStream",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 11,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [],
+        "eventId": "event12",
+        "eventName": "endProcessing",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 12,
+      },
+    ],
+    "reportFinished": true,
+  },
+]
+`;
+
+exports[`successfully sends event requests to the server 1`] = `
+Array [
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [
+          Object {
+            "rowLimit": 0,
+          },
+          Array [
+            Object {
+              "batchSize": 0,
+              "disableLoad": false,
+            },
+          ],
+        ],
+        "eventId": "event0",
+        "eventName": "startProcessing",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 0,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [],
+        "eventId": "event1",
+        "eventName": "startProcessingStream",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 1,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [
+          Object {
+            "text": "something",
+          },
+        ],
+        "eventId": "event2",
+        "eventName": "startProcessingRow",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 2,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [],
+        "eventId": "event3",
+        "eventName": "endProcessingRow",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 3,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [
+          Object {
+            "text": "something",
+          },
+        ],
+        "eventId": "event4",
+        "eventName": "startProcessingRow",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 4,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [],
+        "eventId": "event5",
+        "eventName": "endProcessingRow",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 5,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [
+          Object {
+            "text": "something",
+          },
+        ],
+        "eventId": "event6",
+        "eventName": "startProcessingRow",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 6,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [],
+        "eventId": "event7",
+        "eventName": "endProcessingRow",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 7,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [
+          0,
+          Array [
+            Object {
+              "text": "something",
+            },
+            Object {
+              "text": "something",
+            },
+            Object {
+              "text": "something",
+            },
+          ],
+        ],
+        "eventId": "event8",
+        "eventName": "loadingBatch",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 8,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [
+          0,
+          Array [
+            Object {
+              "text": "something",
+            },
+            Object {
+              "text": "something",
+            },
+            Object {
+              "text": "something",
+            },
+          ],
+        ],
+        "eventId": "event9",
+        "eventName": "loadedBatch",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 9,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [
+          0,
+        ],
+        "eventId": "event10",
+        "eventName": "endLoadingBatch",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 10,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [],
+        "eventId": "event11",
+        "eventName": "endProcessingStream",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 11,
+      },
+    ],
+    "reportFinished": false,
+  },
+  Object {
+    "events": Array [
+      Object {
+        "eventArguments": Array [],
+        "eventId": "event12",
+        "eventName": "endProcessing",
+        "jobId": "job1",
+        "jobStopped": false,
+        "timestamp": 12,
+      },
+    ],
+    "reportFinished": true,
+  },
+]
+`;
